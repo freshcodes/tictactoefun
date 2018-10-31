@@ -2,7 +2,8 @@
 }
 
 .board table {
-  margin: 3rem auto;
+  margin: 3rem 1rem;
+  /* margin: 3rem auto; */
 }
 
 .board table { border-collapse: collapse; }

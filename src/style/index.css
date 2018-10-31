@@ -17,4 +17,7 @@ html, body {
 
 #app {
 	height: 100%;
+	margin: 0 auto;
+	padding: 56px 20px;
+	width: 100%;
 }

@@ -24,7 +24,7 @@ export default class Home extends Component {
   render () {
     return (
       <div class={style.home}>
-        <h1>tictactoe.fun</h1>
+        <h1>TicTacToe.Fun</h1>
         <p>Start a new game.</p>
         <p>I want to be: <select name='player' onchange={this.onchange}><option value='x'>X</option><option value='o'>O</option></select></p>
         <p>I want to play against: <select name='mode' onchange={this.onchange}><optgroup label='Computer'><option value='easy'>Easy</option><option value='medium'>Medium</option><option value='hard'>Hard</option></optgroup><option value='remote'>a friend</option></select></p>
