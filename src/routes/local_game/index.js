@@ -10,16 +10,14 @@ const modeMap = {
 
 const playerMap = {
   x: ttt.X,
-  X: ttt.X,
-  o: ttt.O,
-  O: ttt.O
+  o: ttt.O
 }
 
 export default class LocalGame extends Component {
   constructor (props) {
     super(props)
-    this.mode = modeMap[this.props.mode]
-    this.player = playerMap[this.props.player]
+    this.mode = modeMap[this.props.mode.toLowerCase()]
+    this.player = playerMap[this.props.player.toLowerCase()]
     this.computer = this.player === ttt.X ? ttt.O : ttt.X
     this.state.game = ttt.generateState(ttt.generateEmptyBoard())
     if (this.computer === ttt.X) {
@@ -45,7 +43,7 @@ export default class LocalGame extends Component {
   render ({ player, mode }, { game }) {
     return (
       <div>
-        <p>You are playing as {player.toUpperCase()} against the computer on {mode} mode.</p>
+        <p>You are playing as {player.toUpperCase()} against the computer on {mode.toLowerCase()} mode.</p>
         <Board win={game.winIndexes} board={game.board} click={this.boardClick} />
       </div>
     )
