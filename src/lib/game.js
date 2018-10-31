@@ -21,10 +21,10 @@ const Game = {
   boardValues: [1, 2, 4, 8, 16, 32, 64, 128, 256],
   winningCounts: [7, 56, 73, 84, 146, 273, 292, 448],
   winningCoordinates: {
-    7:   [[0, 0], [0, 1], [0, 2]],
-    56:  [[1, 0], [1, 1], [1, 2]],
-    84:  [[0, 2], [1, 1], [2, 0]],
-    73:  [[0, 0], [1, 0], [2, 0]],
+    7: [[0, 0], [0, 1], [0, 2]],
+    56: [[1, 0], [1, 1], [1, 2]],
+    84: [[0, 2], [1, 1], [2, 0]],
+    73: [[0, 0], [1, 0], [2, 0]],
     146: [[0, 1], [1, 1], [2, 1]],
     273: [[0, 0], [1, 1], [2, 2]],
     292: [[0, 2], [1, 2], [2, 2]],
@@ -49,9 +49,9 @@ const Game = {
     let oCount = 0
     let emptyCount = 0
     for (var i = 0; i < 9; i++) {
-      board[i] === Game.X ? xCount += Game.boardValues[i] :
-      board[i] === Game.O ? oCount += Game.boardValues[i] :
-      emptyCount += 1
+      board[i] === Game.X ? xCount += Game.boardValues[i]
+        : board[i] === Game.O ? oCount += Game.boardValues[i]
+          : emptyCount += 1
     }
     return [emptyCount, xCount, oCount]
   },
@@ -64,8 +64,8 @@ const Game = {
     const finished = !!xWin || !!oWin || counts[Game.E] === 0
     const draw = finished && !xWin && !oWin
     const absScore = finished ? (draw ? 0 : 10 - counts[Game.E]) : null
-    const xScore = finished ? (draw ? 0 : (!!xWin ? absScore : -absScore)) : null
-    const oScore = finished ? (draw ? 0 : (!!oWin ? absScore : -absScore)) : null
+    const xScore = finished ? (draw ? 0 : (xWin ? absScore : -absScore)) : null
+    const oScore = finished ? (draw ? 0 : (oWin ? absScore : -absScore)) : null
     const score = {}
     score[Game.X] = xScore
     score[Game.O] = oScore
@@ -97,7 +97,7 @@ const Game = {
       if (state.xWin) value += state.score[Game.X]
       if (state.oWin) value -= Math.abs(state.score[Game.O])
     }
-    return  value
+    return value
   },
   sortForX (a, b) { return a.minimax - b.minimax }, // maximize for X
   sortForO (a, b) { return b.minimax - a.minimax }, // minimize for X
@@ -133,6 +133,13 @@ const Game = {
       //   console.log("-------")
       // })
       return states[0]
+    }
+  },
+  stateFromAIMove (mode, state) {
+    switch (mode) {
+      case Game.EASY: return Game.stateFromAIMoveEasy(state)
+      case Game.INTERMEDIATE: return Game.stateFromAIMoveIntermediate(state)
+      case Game.HARD: return Game.stateFromAIMoveHard(state)
     }
   },
   stateFromAIFirstMove (state) {

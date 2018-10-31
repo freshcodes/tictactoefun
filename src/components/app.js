@@ -3,6 +3,8 @@ import { Router } from 'preact-router'
 
 // Code-splitting is automated for routes
 import Home from '../routes/home'
+import LocalGame from '../routes/local_game'
+import RemoteGame from '../routes/remote_game'
 
 export default class App extends Component {
   handleRoute = (event) => {
@@ -15,6 +17,8 @@ export default class App extends Component {
       <div id='app'>
         <Router onChange={this.handleRoute}>
           <Home path='/' />
+          <LocalGame path='/local/:player/:mode' />
+          <RemoteGame path='/remote/:room' />
         </Router>
       </div>
     )
