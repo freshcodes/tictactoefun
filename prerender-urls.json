@@ -1,1 +1,9 @@
-[{"url":"/","title":"TicTacToe.Fun"}]
+[
+	{"url":"/","title":"TicTacToe.Fun"},
+	{"url":"/local/x/easy","title":"TicTacToe.Fun"},
+	{"url":"/local/x/medium","title":"TicTacToe.Fun"},
+	{"url":"/local/x/hard","title":"TicTacToe.Fun"},
+	{"url":"/local/o/easy","title":"TicTacToe.Fun"},
+	{"url":"/local/o/medium","title":"TicTacToe.Fun"},
+	{"url":"/local/o/hard","title":"TicTacToe.Fun"}
+]
