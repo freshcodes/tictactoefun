@@ -4,11 +4,20 @@
     <meta charset="utf-8">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="application-name" content="TicTacToe.Fun">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="TicTacToe.Fun">
+    <meta name="description" content="A Tic Tac Toe PWA you can play offline against the computer.">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
     <link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>manifest.json">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="/favicon.ico">
     <% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
       <meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
+      <meta name="msapplication-TileColor" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
+      <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
     <% } %>
     <% for (var chunk of webpack.chunks) { %>
      <% if (chunk.names.length === 1 && chunk.names[0] === 'polyfills') continue; %>
