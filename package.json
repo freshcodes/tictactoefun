@@ -19,10 +19,29 @@
     "parser": "babel-eslint",
     "extends": [
       "standard",
-      "standard-preact"
+      "standard-react"
     ],
+    "settings": {
+      "react": {
+        "pragma": "h"
+      }
+    },
     "env": {
       "jest": true
+    },
+    "rules": {
+      "react/jsx-no-bind": [
+        "error",
+        {
+          "allowArrowFunctions": true,
+          "allowBind": false,
+          "ignoreRefs": true
+        }
+      ],
+      "react/no-unknown-property": false,
+      "react/no-did-update-set-state": "error",
+      "react/react-in-jsx-scope": "error",
+      "react/prop-types": false
     }
   },
   "eslintIgnore": [
@@ -32,12 +51,11 @@
   ],
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "copy-webpack-plugin": "^4.5.3",
     "eslint": "^5.6.1",
     "eslint-config-standard": "^12.0.0",
-    "eslint-config-standard-preact": "^1.1.6",
+    "eslint-config-standard-react": "^7.0.2",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^4.0.0",
