@@ -14,10 +14,7 @@ const playerMap = {
 
 const key = 'tictactoe.fun'
 
-let localState = {}
-if (typeof window !== 'undefined') {
-  localState = JSON.parse(localStorage.getItem(key) || '{}')
-}
+let localState = JSON.parse(localStorage.getItem(key) || '{}')
 
 const initialState = Object.assign({
   lastUri: null,
@@ -28,7 +25,7 @@ const store = createStore(initialState)
 
 const actions = (store) => ({
   navigate (state, event) {
-    if (typeof window !== 'undefined' && window.ga) window.ga('send', 'pageview', event.url)
+    if (window.ga) window.ga('send', 'pageview', event.url)
     return { lastUri: event.url }
   },
 
@@ -59,18 +56,16 @@ const actions = (store) => ({
   }
 })
 
-if (typeof window !== "undefined") {
-  // Keep state synced up with localStorage
-  store.subscribe(state => { localStorage.setItem(key, JSON.stringify(state)) })
+// Keep state synced up with localStorage
+store.subscribe(state => { localStorage.setItem(key, JSON.stringify(state)) })
 
-  // Keeps state in sync across multiple tabs
-  window.addEventListener('storage', (event) => {
-    if (event.key === key) {
-      const state = JSON.parse(localStorage.getItem(key) || '{}')
-      store.setState(state)
-    }
-  }, false)
-}
+// Keeps state in sync across multiple tabs
+window.addEventListener('storage', (event) => {
+  if (event.key === key) {
+    const state = JSON.parse(localStorage.getItem(key) || '{}')
+    store.setState(state)
+  }
+}, false)
 
 export {
   store,
