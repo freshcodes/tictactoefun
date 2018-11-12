@@ -14,14 +14,6 @@ const playerMap = {
 
 const key = 'tictactoe.fun'
 
-// Keeps state in sync across multiple tabs
-window.addEventListener('storage', (event) => {
-  if (event.key === key) {
-    const state = JSON.parse(localStorage.getItem(key) || '{}')
-    store.setState(state)
-  }
-}, false)
-
 let localState = {}
 if (typeof window !== 'undefined') {
   localState = JSON.parse(localStorage.getItem(key) || '{}')
@@ -33,8 +25,6 @@ const initialState = Object.assign({
 }, localState)
 
 const store = createStore(initialState)
-
-store.subscribe(state => { localStorage.setItem(key, JSON.stringify(state)) })
 
 const actions = (store) => ({
   navigate (state, event) {
@@ -68,6 +58,19 @@ const actions = (store) => ({
     return { games: games }
   }
 })
+
+if (typeof window !== "undefined") {
+  // Keep state synced up with localStorage
+  store.subscribe(state => { localStorage.setItem(key, JSON.stringify(state)) })
+
+  // Keeps state in sync across multiple tabs
+  window.addEventListener('storage', (event) => {
+    if (event.key === key) {
+      const state = JSON.parse(localStorage.getItem(key) || '{}')
+      store.setState(state)
+    }
+  }, false)
+}
 
 export {
   store,
