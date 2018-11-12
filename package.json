@@ -70,7 +70,8 @@
     "firebase": "^5.5.3",
     "preact": "^8.3.1",
     "preact-compat": "^3.18.4",
-    "preact-router": "^2.5.7"
+    "preact-router": "^2.5.7",
+    "unistore": "^3.1.0"
   },
   "browserslist": [
     "> 5%",

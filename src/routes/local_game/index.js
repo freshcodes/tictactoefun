@@ -1,63 +1,79 @@
 import { h, Component } from 'preact'
 import { route } from 'preact-router'
 import Board from '../../components/board'
-import ttt from '../../lib/game.js'
 
-const modeMap = {
-  hard: ttt.HARD,
-  medium: ttt.INTERMEDIATE,
-  easy: ttt.EASY
-}
-
-const playerMap = {
-  x: ttt.X,
-  o: ttt.O
-}
+import { modeMap, playerMap } from '../../store'
 
 export default class LocalGame extends Component {
   constructor (props) {
     super(props)
-    this.mode = modeMap[this.props.mode.toLowerCase()]
-    this.player = playerMap[this.props.player.toLowerCase()]
-    this.computer = this.player === ttt.X ? ttt.O : ttt.X
-    this.restart()
+    this.player = playerMap[props.player.toLowerCase()]
+    this.mode = modeMap[props.mode.toLowerCase()]
+    this.gameKey = `local-${this.player}-${this.mode}`
+    this.redirectIfInvalidSettings()
   }
 
-  restart = (event) => {
-    this.setState({ game: ttt.generateState(ttt.generateEmptyBoard()) })
-    if (this.computer === ttt.X) {
-      this.setState({ game: ttt.stateFromAIFirstMove(this.state.game) })
+  redirectIfInvalidSettings () {
+    if (typeof this.player === 'undefined' || typeof this.mode === 'undefined') route('/')
+  }
+
+  componentDidUpdate () {
+    this.checkAndTakeComputersTurn()
+    if (!this.finished && this.game.finished) {
+      this.onfinish()
     }
   }
 
+  onfinish () {
+    // TODO: maybe store stats?
+  }
+
+  componentDidMount () {
+    if (!this.game) {
+      this.restart()
+    } else {
+      this.finished = this.game.finished
+      this.checkAndTakeComputersTurn()
+    }
+  }
+
+  checkAndTakeComputersTurn () {
+    if (!this.game || this.game.finished) return
+    if (this.game.nextPlayer === this.player) return
+    this.props.moveForComputer(this.gameKey, this.mode)
+  }
+
+  restart = (event) => {
+    this.finished = false
+    this.props.newGame(this.gameKey, this.player)
+  }
+
   newgame = (event) => {
+    this.props.clearGameState()
     route('/')
   }
 
   boardClick = (event) => {
-    if (!this.state.game.finished && event.isEmpty) {
-      this.setState({
-        game: ttt.stateFromPlayerMove(this.state.game, event.boardIndex)
-      })
-      if (!this.state.game.finished) {
-        if (this.state.game.nextPlayer === this.computer) {
-          this.setState({
-            game: ttt.stateFromAIMove(this.mode, this.state.game)
-          })
-        }
-      }
-    }
+    if (this.game.finished) return
+    if (this.game.nextPlayer !== this.player) return
+    if (!event.isEmpty) alert('This space is already taken')
+    this.props.moveForPlayer(this.gameKey, event.boardIndex)
   }
 
-  render ({ player, mode }, { game }) {
+  render ({ player, mode }) {
+    const board = this.game ? (<Board win={this.game.winIndexes} board={this.game.board} click={this.boardClick} />) : <div />
     return (
       <div>
         <h1>TicTacToe.Fun</h1>
         <p>You are playing as <strong>{player.toUpperCase()}</strong> against the computer on <strong>{mode.toLowerCase()}</strong> mode.</p>
-        <Board win={game.winIndexes} board={game.board} click={this.boardClick} />
+        {board}
         <button onclick={this.restart}>Restart</button>&nbsp;&nbsp;
         <button onclick={this.newgame}>New Game</button>
       </div>
     )
+  }
+
+  get game () {
+    return this.props.games[this.gameKey]
   }
 }

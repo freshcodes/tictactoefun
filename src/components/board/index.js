@@ -7,7 +7,6 @@ export default class Board extends Component {
     const boardIndex = parseInt(td.getAttribute('data-index'), 10)
     const state = parseInt(td.getAttribute('data-state'), 10)
     const isEmpty = state === 0
-    console.log(td, boardIndex, isEmpty)
     this.props.click({ td, boardIndex, isEmpty })
   }
 

@@ -1,5 +1,8 @@
+import { h } from 'preact'
 import './style'
 import App from './components/app'
+import { Provider } from 'unistore/preact'
+import { store } from './store'
 
 import firebase from 'firebase/app'
 import 'firebase/database'
@@ -15,4 +18,6 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig)
 
-export default App
+export default () => {
+  return (<Provider store={store}><App /></Provider>)
+}
