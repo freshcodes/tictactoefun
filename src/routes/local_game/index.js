@@ -69,7 +69,7 @@ export default class LocalGame extends Component {
   }
 
   status () {
-    if (this.game.finished) {
+    if (this.game && this.game.finished) {
       if (this.game.draw) return 'Tie'
       if ((this.player === ttt.X && this.game.xWin) || (this.player === ttt.O && this.game.oWin)) return 'You won'
       return 'You lost'
