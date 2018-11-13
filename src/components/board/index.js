@@ -11,7 +11,7 @@ export default class Board extends Component {
 
   render (props, state) {
     return (
-      <div class="board">
+      <div class='board'>
         <table>
           <tbody>
             <tr>
