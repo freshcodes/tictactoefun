@@ -1,5 +1,4 @@
 import { h, Component } from 'preact'
-import style from './style'
 
 export default class Board extends Component {
   click = (event) => {
@@ -12,7 +11,7 @@ export default class Board extends Component {
 
   render (props, state) {
     return (
-      <div class={style.board}>
+      <div class="board">
         <table>
           <tbody>
             <tr>

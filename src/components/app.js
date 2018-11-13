@@ -19,11 +19,15 @@ class App extends Component {
   render () {
     return (
       <div id='app'>
+        <header><h1>TicTacToe.Fun</h1></header>
         <Router onChange={this.props.navigate}>
           <Home path='/' />
           <LocalGame path='/local/:player/:mode' {...this.props} />
           <RemoteGame path='/remote/:room' />
         </Router>
+        <footer>
+          <p>&copy; 2018 <a href='https://fresh.codes'>Fresh Codes LLC</a></p>
+        </footer>
       </div>
     )
   }

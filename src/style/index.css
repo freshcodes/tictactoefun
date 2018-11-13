@@ -15,9 +15,75 @@ html, body {
 	box-sizing: border-box;
 }
 
+h1 { margin-bottom: 0; }
+label { display: block; }
+select, button { font-size: 18px; }
+
 #app {
 	height: 100%;
 	margin: 0 auto;
-	padding: 56px 20px;
+	max-width: 320px;
+	text-align: center;
+}
+
+header {
+	padding: 0.5rem 0;	
+}
+
+footer {
+	padding: 0.5rem 0;
+}
+
+.board table {
+	margin: 3rem auto;
+	border-collapse: collapse;
+}
+
+.board table td {
+	margin: 0;
+	padding: 0;
+}
+
+.board table td + td {
+	border-left: 2px solid #000;
+}
+
+.board table tr + tr {
+	border-top: 2px solid #000;
+}
+
+.board table tr + tr > td {
+	border-top: 2px solid #000;
+}
+
+.board table td div {
+	width: 100px;
+	height: 100px;
+	color: #000;
+	font-size: 80px;
+	line-height: 100px;
+	text-align: center;
+}
+
+.board table td[data-state='1'] div::after {
+	content: 'X';
+}
+.board table td[data-state='2'] div::after {
+	content: 'O';
+}
+
+.board table td[class*='W'] div {
+	color: #fff;
+	background-color: green;
+}
+
+.board-wrapper {
+	position: relative;
+}
+
+.board-wrapper .status {
+	position: absolute;
+	bottom: -1.5rem;
+	display: block;
 	width: 100%;
 }
