@@ -23,8 +23,8 @@ export default class Home extends Component {
   render () {
     return (
       <div>
-        <p><label for='player'>I want to play as:</label><select id='player' name='player' onchange={this.onchange}><option value='x'>X</option><option value='o'>O</option></select></p>
-        <p><label for='mode'>I want to play against:</label><select id='mode' name='mode' onchange={this.onchange}><optgroup label='Computer'><option value='easy'>Easy</option><option value='medium' selected>Medium</option><option value='hard'>Hard</option></optgroup><option value='remote'>a friend</option></select></p>
+        <p><label for='player'>I want to play as:</label><select value={this.state.player} id='player' name='player' onchange={this.onchange}><option value='x'>X</option><option value='o'>O</option></select></p>
+        <p><label for='mode'>I want to play against:</label><select value={this.state.mode} id='mode' name='mode' onchange={this.onchange}><optgroup label='Computer'><option value='easy'>Easy</option><option value='medium'>Medium</option><option value='hard'>Hard</option></optgroup><option value='remote'>a friend</option></select></p>
         <p><button onclick={this.start}>Start!</button></p>
       </div>
     )
