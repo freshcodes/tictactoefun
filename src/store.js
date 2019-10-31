@@ -25,7 +25,6 @@ const store = createStore(initialState)
 
 const actions = (store) => ({
   navigate (state, event) {
-    if (window.ga) window.ga('send', 'pageview', event.url)
     return { lastUri: event.url }
   },
 

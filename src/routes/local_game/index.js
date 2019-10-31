@@ -8,7 +8,7 @@ import { modeMap, playerMap } from '../../store'
 export default class LocalGame extends Component {
   constructor (props) {
     super(props)
-    this.state.thinking = false
+    this.state = { thinking: false }
     this.player = playerMap[props.player.toLowerCase()]
     this.mode = modeMap[props.mode.toLowerCase()]
     this.gameKey = `local-${this.player}-${this.mode}`
