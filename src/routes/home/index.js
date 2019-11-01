@@ -16,7 +16,7 @@ export default class Home extends Component {
     if (this.state.mode !== 'remote') {
       route(`/local/${this.state.player}/${this.state.mode}`)
     } else {
-      alert('remote game play is coming soon')
+      route(`/remote/${this.state.player}`)
     }
   }
 

@@ -23,7 +23,8 @@ class App extends Component {
         <Router onChange={this.props.navigate}>
           <Home path='/' />
           <LocalGame path='/local/:player/:mode' {...this.props} />
-          <RemoteGame path='/remote/:room' />
+          <RemoteGame path='/host' />
+          <RemoteGame path='/remote/:hostId' />
         </Router>
         <footer>
           <p>&copy; 2018 <a href='https://fresh.codes'>Fresh Codes LLC</a></p>
