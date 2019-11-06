@@ -18,7 +18,9 @@ export default class HostGame extends Component {
       board: []
     }
 
-    this.controller = new RemoteGameController(this)
+    if (typeof window !== "undefined") {
+      this.controller = new RemoteGameController(this)
+    }
   }
 
   get player () {

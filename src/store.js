@@ -14,7 +14,11 @@ const playerMap = {
 
 const key = 'tictactoe.fun'
 
-let localState = JSON.parse(localStorage.getItem(key) || '{}')
+let localState = {}
+
+if (typeof window !== "undefined") { // localStorage is not available in pre-render
+  localState = JSON.parse(localStorage.getItem(key) || '{}')
+}
 
 const initialState = Object.assign({
   lastUri: null,
@@ -55,16 +59,18 @@ const actions = (store) => ({
   }
 })
 
-// Keep state synced up with localStorage
-store.subscribe(state => { localStorage.setItem(key, JSON.stringify(state)) })
+if (typeof window !== "undefined") { // localStorage is not available in pre-render
+  // Keep state synced up with localStorage
+  store.subscribe(state => { localStorage.setItem(key, JSON.stringify(state)) })
 
-// Keeps state in sync across multiple tabs
-window.addEventListener('storage', (event) => {
-  if (event.key === key) {
-    const state = JSON.parse(localStorage.getItem(key) || '{}')
-    store.setState(state)
-  }
-}, false)
+  // Keeps state in sync across multiple tabs
+  window.addEventListener('storage', (event) => {
+    if (event.key === key) {
+      const state = JSON.parse(localStorage.getItem(key) || '{}')
+      store.setState(state)
+    }
+  }, false)
+}
 
 export {
   store,

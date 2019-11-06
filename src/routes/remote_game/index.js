@@ -18,11 +18,13 @@ export default class RemoteGame extends Component {
       board: []
     }
 
-    this.hostId = window.location.search.replace('?', '')
+    if (typeof window !== "undefined") {
+      this.hostId = window.location.search.replace('?', '')
 
-    // TODO: what to do if there isn't a host id
+      // TODO: what to do if there isn't a host id
 
-    this.controller = new RemoteGameController(this, this.hostId)
+      this.controller = new RemoteGameController(this, this.hostId)
+    }
   }
 
   get player () {
