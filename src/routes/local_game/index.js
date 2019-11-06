@@ -27,6 +27,7 @@ export default class LocalGame extends Component {
 
   onfinish () {
     // TODO: maybe store stats?
+    // console.log(this.game)
   }
 
   componentDidMount () {
@@ -54,7 +55,7 @@ export default class LocalGame extends Component {
   }
 
   newgame = (event) => {
-    this.props.clearGameState()
+    this.props.clearGameState(this.gameKey)
     route('/')
   }
 

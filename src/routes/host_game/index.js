@@ -6,7 +6,7 @@ import ttt from '../../lib/game'
 import RemoteGameController from '../../lib/remote_game_controler.js'
 import { modeMap, playerMap } from '../../store'
 
-export default class RemoteGame extends Component {
+export default class HostGame extends Component {
   constructor (props) {
     super(props)
 
@@ -18,11 +18,7 @@ export default class RemoteGame extends Component {
       board: []
     }
 
-    this.hostId = window.location.search.replace('?', '')
-
-    // TODO: what to do if there isn't a host id
-
-    this.controller = new RemoteGameController(this, this.hostId)
+    this.controller = new RemoteGameController(this)
   }
 
   get player () {

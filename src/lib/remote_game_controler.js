@@ -1,4 +1,5 @@
-import ttt from '../../lib/game'
+import ttt from './game'
+import Peer from 'peerjs'
 
 export default class RemoteGameController {
   constructor (component, hostId) {
