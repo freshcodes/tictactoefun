@@ -6,6 +6,9 @@ import { actions } from '../store'
 
 import { changeBackground } from '../lib/background'
 
+import Header from '../components/header'
+import Footer from '../components/footer'
+
 // Code-splitting is automated for routes
 import Home from '../routes/home'
 import LocalGame from '../routes/local_game'
@@ -25,7 +28,7 @@ class App extends Component {
   render () {
     return (
       <div id='app'>
-        <header><h1>TicTacToe.Fun</h1></header>
+        <Header />
         <Router onChange={this.props.navigate}>
           <Home path='/' {...this.props} />
           <LocalGame path='/local/:player/:mode' {...this.props} />
@@ -33,12 +36,10 @@ class App extends Component {
           <RemoteGame path='/remote' />
           {/* <GameStats path='/stats' /> */}
         </Router>
-        <footer>
-          <p><a href='https://fresh.codes'><img src="/assets/fresh-codes.svg" alt="Fresh Codes" width="200" /></a></p>
-        </footer>
+        <Footer />
       </div>
     )
   }
 }
 
-export default connect('lastUri,games', actions)(App)
+export default connect('lastUri,lastPlayerChoice,lastModeChoice,games', actions)(App)

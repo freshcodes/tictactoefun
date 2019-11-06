@@ -21,7 +21,8 @@ body {
 }
 
 h1 { margin-bottom: 0; }
-label { display: block; }
+label { display: block; margin: 0.7rem; }
+label span { display: block; margin-bottom: 0.2rem; }
 select, button { font-size: 18px; }
 
 #app {

@@ -1,6 +1,16 @@
 import createStore from 'unistore'
 import ttt from './lib/game.js'
 
+const modeNamesMap = {
+  [ttt.EASY]: 'Easy',
+  [ttt.INTERMEDIATE]: 'Medium',
+  [ttt.HARD]: 'Hard',
+}
+const playerNamesMap = {
+  [ttt.X]: 'X',
+  [ttt.O]: 'O'
+}
+
 const modeMap = {
   hard: ttt.HARD,
   medium: ttt.INTERMEDIATE,
@@ -10,6 +20,16 @@ const modeMap = {
 const playerMap = {
   x: ttt.X,
   o: ttt.O
+}
+
+function localGameKeyFromUrlParams (player, mode) {
+  player = playerMap[player.toLowerCase()]
+  mode = modeMap[mode.toLowerCase()]
+  return `local-${player}-${mode}`
+}
+
+function localGameKeyFromParams (player, mode) {
+  return `local-${player}-${mode}`
 }
 
 const key = 'tictactoe.fun'
@@ -22,6 +42,8 @@ if (typeof window !== "undefined") { // localStorage is not available in pre-ren
 
 const initialState = Object.assign({
   lastUri: null,
+  lastPlayerChoice: ttt.X,
+  lastModeChoice: ttt.INTERMEDIATE,
   games: {}
 }, localState)
 
@@ -32,12 +54,27 @@ const actions = (store) => ({
     return { lastUri: event.url }
   },
 
+  setLastPlayerChoice (state, player) {
+    // TODO: Check value is in playerMap
+    return { lastPlayerChoice: player }
+  },
+
+  setLastModeChoice (state, mode) {
+    // TODO: Check value is in modeMap
+    return { lastModeChoice: mode }
+  },
+
   newGame (state, gameKey, player) {
     let gameState = ttt.generateState(ttt.generateEmptyBoard())
     if (player !== ttt.X) gameState = ttt.stateFromAIFirstMove(gameState)
     let games = Object.assign({}, state.games)
     games[gameKey] = gameState
     return { games: games }
+  },
+
+  clearGameStateFromParams (state, player, mode) {
+    let gameKey = localGameKeyFromParams(player, mode)
+    this.clearGameState(gameKey)
   },
 
   clearGameState (state, gameKey) {
@@ -75,6 +112,9 @@ if (typeof window !== "undefined") { // localStorage is not available in pre-ren
 export {
   store,
   actions,
+  modeNamesMap,
+  playerNamesMap,
   modeMap,
-  playerMap
+  playerMap,
+  localGameKeyFromUrlParams
 }
