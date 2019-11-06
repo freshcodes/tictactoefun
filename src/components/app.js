@@ -27,7 +27,7 @@ class App extends Component {
           <RemoteGame path='/remote/:hostId' />
         </Router>
         <footer>
-          <p>&copy; 2018 <a href='https://fresh.codes'>Fresh Codes LLC</a></p>
+          <p><a href='https://fresh.codes'><img src="/assets/fresh-codes.svg" alt="Fresh Codes" width="200" /></a></p>
         </footer>
       </div>
     )
