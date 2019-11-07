@@ -55,12 +55,12 @@ const actions = (store) => ({
   },
 
   setLastPlayerChoice (state, player) {
-    // TODO: Check value is in playerMap
+    if (!playerNamesMap[player]) return
     return { lastPlayerChoice: player }
   },
 
   setLastModeChoice (state, mode) {
-    // TODO: Check value is in modeMap
+    if (!modeNamesMap[mode]) return
     return { lastModeChoice: mode }
   },
 
