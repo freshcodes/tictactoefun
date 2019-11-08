@@ -89,7 +89,7 @@ export default class LocalGame extends Component {
           <span aria-live='polite' aria-atomic='true' class='status'>{this.status()}</span>
         </div>
         <p>
-          <button onclick={this.restart}>Restart</button>&nbsp;&nbsp;
+          <button onclick={this.restart}>Restart</button>
           <button onclick={this.newgame}>New Game</button>
         </p>
       </div>

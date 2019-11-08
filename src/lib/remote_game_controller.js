@@ -14,10 +14,15 @@ export default class RemoteGameController extends PeerBaseController {
     this.trigger('updatedGameState', this.game)
   }
 
+  restart () {
+    this.game = ttt.generateState(ttt.generateEmptyBoard(), ttt.O)
+    this.connection.send(this.game)
+    this.trigger('updatedGameState', this.game)
+  }
+
   onHostToFriendConnectionData (data) {
     super.onHostToFriendConnectionData(data)
 
-    this.validateData(data)
     this.game = data
     this.trigger('updatedGameState', this.game)
   }
@@ -25,13 +30,7 @@ export default class RemoteGameController extends PeerBaseController {
   onFriendToHostConnectionData (data) {
     super.onFriendToHostConnectionData(data)
 
-    this.validateData(data)
     this.game = data
     this.trigger('updatedGameState', this.game)
-  }
-
-  validateData (data) {
-    if (data.lastMoveBy !== this.game.nextPlayer) throw new Error('Received invalid data')
-    if ((this.game.counts[0] - 1) !== data.counts[0]) throw new Error('Received invalid data')
   }
 }

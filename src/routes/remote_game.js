@@ -59,8 +59,7 @@ export default class RemoteGame extends Component {
   }
 
   restart = (event) => {
-    // this.finished = false
-    // this.props.newGame(this.gameKey, this.player)
+    this.controller.restart()
   }
 
   newgame = (event) => {
@@ -110,9 +109,10 @@ export default class RemoteGame extends Component {
   }
 
   renderButtons () {
+    let restart = this.game.finished ? <button onclick={this.restart}>Restart</button> : ''
     return (
       <p>
-        <button onclick={this.restart}>Restart</button>&nbsp;&nbsp;
+        {restart}
         <button onclick={this.newgame}>New Game</button>
       </p>
     )
