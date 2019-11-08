@@ -56,6 +56,19 @@ footer {
 	border-collapse: collapse;
 }
 
+.board table caption {
+	/* https://github.com/twbs/bootstrap/blob/a4a04cd9ec741050390746f8056cc79a9c04c8df/scss/mixins/_screen-reader.scss */
+	position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 .board table td {
 	margin: 0;
 	padding: 0;
@@ -74,20 +87,28 @@ footer {
 }
 
 .board table td div {
+	position: relative;
 	width: 100px;
 	height: 100px;
 	color: #000;
+	text-align: center;
+}
+.board table td div button {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	background: none;
 	font-size: 80px;
-	line-height: 100px;
+	line-height: 100%;
 	text-align: center;
 }
 
-.board table td[data-state='1'] div::after {
-	content: 'X';
-}
-.board table td[data-state='2'] div::after {
-	content: 'O';
-}
+/* .board table td[data-state='1'] div::after { */
+/* 	content: 'X'; */
+/* } */
+/* .board table td[data-state='2'] div::after { */
+/* 	content: 'O'; */
+/* } */
 
 .board table td[class*='W'] div {
 	color: #fff;

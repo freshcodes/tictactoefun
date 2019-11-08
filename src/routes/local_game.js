@@ -1,9 +1,9 @@
 import { h, Component } from 'preact'
 import { route } from 'preact-router'
-import Board from '../../components/board'
-import ttt from '../../lib/game'
+import Board from '../components/board'
+import ttt from '../lib/game'
 
-import { modeMap, playerMap } from '../../store'
+import { modeMap, playerMap } from '../store'
 
 export default class LocalGame extends Component {
   constructor (props) {
@@ -86,7 +86,7 @@ export default class LocalGame extends Component {
         <p>You are playing as <strong>{player.toUpperCase()}</strong> against the computer on <strong>{mode.toLowerCase()}</strong> mode.</p>
         <div class='board-wrapper'>
           {board}
-          <span class='status'>{this.status()}</span>
+          <span aria-live='polite' aria-atomic='true' class='status'>{this.status()}</span>
         </div>
         <p>
           <button onclick={this.restart}>Restart</button>&nbsp;&nbsp;

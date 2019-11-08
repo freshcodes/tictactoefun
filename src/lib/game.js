@@ -15,9 +15,11 @@ const Game = {
   EASY: 0,
   INTERMEDIATE: 1,
   HARD: 2,
+
   E: 0,
   X: 1,
   O: 2,
+
   boardValues: [1, 2, 4, 8, 16, 32, 64, 128, 256],
   winningCounts: [7, 56, 73, 84, 146, 273, 292, 448],
   winningCoordinates: {
@@ -30,7 +32,9 @@ const Game = {
     292: [[0, 2], [1, 2], [2, 2]],
     448: [[2, 0], [2, 1], [2, 2]]
   },
+
   generateEmptyBoard: () => [Game.E, Game.E, Game.E, Game.E, Game.E, Game.E, Game.E, Game.E, Game.E],
+
   getWinningCoordinates (positionCount) {
     for (let i = 0, l = Game.winningCounts.length; i < l; i++) {
       let currentCount = Game.winningCounts[i]
@@ -39,11 +43,13 @@ const Game = {
     }
     return null
   },
+
   getWinningIndexesFromCoordinates (coordinates) {
     return coordinates.map((coordinate) => {
       return (coordinate[0] * 3) + coordinate[1]
     })
   },
+
   getCounts (board) {
     let xCount = 0
     let oCount = 0
@@ -55,6 +61,7 @@ const Game = {
     }
     return [emptyCount, xCount, oCount]
   },
+
   generateState (board, lastMoveBy) {
     const counts = Game.getCounts(board)
     const xWin = Game.getWinningCoordinates(counts[Game.X])
@@ -66,26 +73,28 @@ const Game = {
     const absScore = finished ? (draw ? 0 : 10 - counts[Game.E]) : null
     const xScore = finished ? (draw ? 0 : (xWin ? absScore : -absScore)) : null
     const oScore = finished ? (draw ? 0 : (oWin ? absScore : -absScore)) : null
-    const score = {}
-    score[Game.X] = xScore
-    score[Game.O] = oScore
+    const score = { [Game.X]: xScore, [Game.O]: oScore }
     const nextPlayer = lastMoveBy === Game.X ? Game.O : Game.X
     return { lastMoveBy, nextPlayer, board, counts, finished, xWin, oWin, winCoordinates, winIndexes, draw, score }
   },
+
   stateFromPlayerMove (state, index) {
     const board = state.board.slice(0)
     if (board[index] !== Game.E) throw new Error('That place on the board is already taken.')
     board[index] = state.nextPlayer
     return Game.generateState(board, state.nextPlayer)
   },
+
   getEmptyPlaceIndicies (board) {
     return board.reduce((places, value, index) => { if (value === Game.E) places.push(index); return places }, [])
   },
+
   getPotentialNextStates (state) {
     return Game.getEmptyPlaceIndicies(state.board).map((index) => {
       return Game.stateFromPlayerMove(state, index)
     })
   },
+
   minimax (state) {
     let value = 0
     const potentialStates = Game.getPotentialNextStates(state)
@@ -99,19 +108,24 @@ const Game = {
     }
     return value
   },
+
   sortForX (a, b) { return a.minimax - b.minimax }, // maximize for X
+
   sortForO (a, b) { return b.minimax - a.minimax }, // minimize for X
+
   getSortedAINextStates (state) {
     return Game.getPotentialNextStates(state).map((state) => {
       state.minimax = Game.minimax(state)
       return state
     }).sort(Game[`sortFor${state.lastMoveBy === Game.X ? 'X' : 'O'}`])
   },
+
   stateFromAIMoveEasy (state) {
     const emptyPlaceIndicies = Game.getEmptyPlaceIndicies(state.board)
     const random = emptyPlaceIndicies[Math.floor(Math.random() * emptyPlaceIndicies.length)]
     return Game.stateFromPlayerMove(state, random)
   },
+
   stateFromAIMoveIntermediate (state) {
     if (state.counts[Game.E] === 9) {
       return Game.stateFromAIFirstMove(state)
@@ -121,6 +135,7 @@ const Game = {
       return sortedStates[which]
     }
   },
+
   stateFromAIMoveHard (state) {
     if (state.counts[Game.E] === 9) {
       return Game.stateFromAIFirstMove(state)
@@ -135,6 +150,7 @@ const Game = {
       return states[0]
     }
   },
+
   stateFromAIMove (mode, state) {
     switch (mode) {
       case Game.EASY: return Game.stateFromAIMoveEasy(state)
@@ -142,14 +158,17 @@ const Game = {
       case Game.HARD: return Game.stateFromAIMoveHard(state)
     }
   },
+
   stateFromAIFirstMove (state) {
     const potentials = [0, 2, 4, 6, 8]
     const random = potentials[Math.floor(Math.random() * potentials.length)]
     return Game.stateFromPlayerMove(state, random)
   },
+
   symbolForBoardSpot (state, spot) {
     return { 0: ' ', 1: 'X', 2: 'O' }[state.board[spot]]
   },
+
   stateBoardToString (state) {
     return `
 ${Game.symbolForBoardSpot(state, 0)} | ${Game.symbolForBoardSpot(state, 1)} | ${Game.symbolForBoardSpot(state, 2)}
