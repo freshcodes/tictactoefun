@@ -133,3 +133,30 @@ button + button {
 	display: block;
 	width: 100%;
 }
+
+main.stats {
+	padding: 0 1rem;
+}
+table.stats {
+	width: 100%;
+	margin-top: 1rem;
+	border-collapse: collapse;
+}
+
+table.stats caption {
+	margin-bottom: 0.75rem;
+}
+
+table.stats .mode {
+	text-align: left;
+}
+table.stats th,
+table.stats td {
+	padding: 0.25rem 0;
+	border-bottom: 1px solid #000;
+}
+table.stats .win,
+table.stats .loss,
+table.stats .tie {
+	text-align: right;
+}

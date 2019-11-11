@@ -26,8 +26,7 @@ export default class LocalGame extends Component {
   }
 
   onfinish () {
-    // TODO: maybe store stats?
-    // console.log(this.game)
+    this.props.localSaveStats(this.gameKey)
   }
 
   componentDidMount () {
@@ -82,7 +81,7 @@ export default class LocalGame extends Component {
   render ({ player, mode }) {
     const board = this.game ? (<Board win={this.game.winIndexes} board={this.game.board} click={this.boardClick} />) : <div />
     return (
-      <div>
+      <main>
         <p>You are playing as <strong>{player.toUpperCase()}</strong> against the computer on <strong>{mode.toLowerCase()}</strong> mode.</p>
         <div class='board-wrapper'>
           {board}
@@ -92,7 +91,7 @@ export default class LocalGame extends Component {
           <button onclick={this.restart}>Restart</button>
           <button onclick={this.newgame}>New Game</button>
         </p>
-      </div>
+      </main>
     )
   }
 

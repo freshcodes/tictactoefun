@@ -4,7 +4,7 @@ import ttt from './lib/game.js'
 const modeNamesMap = {
   [ttt.EASY]: 'Easy',
   [ttt.INTERMEDIATE]: 'Medium',
-  [ttt.HARD]: 'Hard',
+  [ttt.HARD]: 'Hard'
 }
 const playerNamesMap = {
   [ttt.X]: 'X',
@@ -36,7 +36,7 @@ const key = 'tictactoe.fun'
 
 let localState = {}
 
-if (typeof window !== "undefined") { // localStorage is not available in pre-render
+if (typeof window !== 'undefined') { // localStorage is not available in pre-render
   localState = JSON.parse(localStorage.getItem(key) || '{}')
 }
 
@@ -44,7 +44,25 @@ const initialState = Object.assign({
   lastUri: null,
   lastPlayerChoice: ttt.X,
   lastModeChoice: ttt.INTERMEDIATE,
-  games: {}
+  games: {},
+  stats: {
+    [ttt.EASY]: {
+      [ttt.X]: { win: 0, loss: 0, tie: 0 },
+      [ttt.O]: { win: 0, loss: 0, tie: 0 }
+    },
+    [ttt.INTERMEDIATE]: {
+      [ttt.X]: { win: 0, loss: 0, tie: 0 },
+      [ttt.O]: { win: 0, loss: 0, tie: 0 }
+    },
+    [ttt.HARD]: {
+      [ttt.X]: { win: 0, loss: 0, tie: 0 },
+      [ttt.O]: { win: 0, loss: 0, tie: 0 }
+    },
+    remote: {
+      [ttt.X]: { win: 0, loss: 0, tie: 0 },
+      [ttt.O]: { win: 0, loss: 0, tie: 0 }
+    }
+  }
 }, localState)
 
 const store = createStore(initialState)
@@ -93,10 +111,30 @@ const actions = (store) => ({
     let games = Object.assign({}, state.games)
     games[gameKey] = ttt.stateFromAIMove(mode, games[gameKey])
     return { games: games }
+  },
+
+  localSaveStats (state, gameKey) {
+    let player = parseInt(gameKey.split('-')[1], 10)
+    let mode = parseInt(gameKey.split('-')[2], 10)
+    let game = state.games[gameKey]
+
+    let stats = Object.assign({}, state.stats)
+    let tie = game.draw
+    let win = player === ttt.X ? !!game.xWin : !!game.oWin
+
+    if (tie) {
+      stats[mode][player].tie += 1
+    } else if (win) {
+      stats[mode][player].win += 1
+    } else {
+      stats[mode][player].loss += 1
+    }
+
+    return { stats: stats }
   }
 })
 
-if (typeof window !== "undefined") { // localStorage is not available in pre-render
+if (typeof window !== 'undefined') { // localStorage is not available in pre-render
   // Keep state synced up with localStorage
   store.subscribe(state => { localStorage.setItem(key, JSON.stringify(state)) })
 

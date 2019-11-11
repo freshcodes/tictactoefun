@@ -4,7 +4,6 @@ import { route } from 'preact-router'
 import Board from '../components/board'
 import ttt from '../lib/game'
 import RemoteGameController from '../lib/remote_game_controller'
-import { modeMap, playerMap } from '../store'
 
 export default class RemoteGame extends Component {
   constructor (props) {
@@ -19,7 +18,7 @@ export default class RemoteGame extends Component {
       board: ttt.generateEmptyBoard()
     }
 
-    if (typeof window === "undefined") return
+    if (typeof window === 'undefined') return
 
     this.hostId = window.location.search.replace('?', '')
 
@@ -78,33 +77,33 @@ export default class RemoteGame extends Component {
 
   renderConnecting () {
     return (
-      <div>
+      <main>
         <p>Connecting...</p>
         {this.renderButtons()}
-      </div>
+      </main>
     )
   }
 
   renderWaitingForPlayer () {
     return (
-      <div>
+      <main>
         <p>Connecting to player...</p>
         {this.renderButtons()}
-      </div>
+      </main>
     )
   }
 
   renderBoard () {
     const board = this.state.connectedToPlayer ? (<Board win={this.state.win} board={this.state.board} click={this.boardClick} />) : <div />
     return (
-      <div>
+      <main>
         <p>You are playing as O.</p>
         <div class='board-wrapper'>
           {board}
           <span class='status'>{this.status()}</span>
         </div>
         {this.renderButtons()}
-      </div>
+      </main>
     )
   }
 

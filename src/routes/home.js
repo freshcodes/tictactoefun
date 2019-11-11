@@ -7,6 +7,14 @@ import PlayerChoice from '../components/player_choice'
 import ModeChoice from '../components/mode_choice'
 
 export default class Home extends Component {
+  componentDidMount () {
+    let currentPath = window.location.pathname
+    let lastPath = this.props.lastUri
+    if (lastPath !== currentPath) {
+      route(lastPath)
+    }
+  }
+
   startLocalGame = (event) => {
     let player = this.props.lastPlayerChoice
     let mode = this.props.lastModeChoice
@@ -36,6 +44,7 @@ export default class Home extends Component {
           <p>You can also play against a friend.</p>
           <p><button onclick={this.startRemoteGame}>Start Remote Game</button></p>
         </div>
+        <p>Check out your <a href='/stats'>stats</a>.</p>
       </main>
     )
   }

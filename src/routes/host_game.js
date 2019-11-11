@@ -4,7 +4,6 @@ import { route } from 'preact-router'
 import Board from '../components/board'
 import ttt from '../lib/game'
 import RemoteGameController from '../lib/remote_game_controller'
-import { modeMap, playerMap } from '../store'
 
 export default class HostGame extends Component {
   constructor (props) {
@@ -19,7 +18,7 @@ export default class HostGame extends Component {
       board: ttt.generateEmptyBoard()
     }
 
-    if (typeof window === "undefined") return
+    if (typeof window === 'undefined') return
 
     this.controller = new RemoteGameController(ttt.X)
     this.controller.on('open', () => this.setState({ connectedToPeer: true }))
@@ -71,37 +70,37 @@ export default class HostGame extends Component {
 
   renderConnecting () {
     return (
-      <div>
+      <main>
         <p>Connecting...</p>
         {this.renderButtons()}
-      </div>
+      </main>
     )
   }
 
   renderWaitingForPlayer () {
     let link = window.location.href.replace('/host', `/remote?${this.controller.peer.id}`)
     // TODO put link in input with auto select and copy to clip board feature
-    let connect = (<p>Copy and paste this link to a friend: <input type="text" value={link} readonly /></p>)
+    let connect = (<p>Copy and paste this link to a friend: <input type='text' value={link} readonly /></p>)
     return (
-      <div>
+      <main>
         <p>Waiting for another player...</p>
         {connect}
         {this.renderButtons()}
-      </div>
+      </main>
     )
   }
 
   renderBoard () {
     const board = this.state.connectedToPlayer ? (<Board win={this.state.win} board={this.state.board} click={this.boardClick} />) : <div />
     return (
-      <div>
+      <main>
         <p>You are playing as X.</p>
         <div class='board-wrapper'>
           {board}
           <span aria-live='polite' aria-atomic='true' class='status'>{this.status()}</span>
         </div>
         {this.renderButtons()}
-      </div>
+      </main>
     )
   }
 

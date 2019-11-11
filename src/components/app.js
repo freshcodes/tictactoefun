@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import { Router, route } from 'preact-router'
+import { Router } from 'preact-router'
 import { connect } from 'unistore/preact'
 
 import { actions } from '../store'
@@ -14,15 +14,11 @@ import Home from '../routes/home'
 import LocalGame from '../routes/local_game'
 import HostGame from '../routes/host_game'
 import RemoteGame from '../routes/remote_game'
-// import GameStats from '../routes/game_stats'
+import GameStats from '../routes/game_stats'
 
 class App extends Component {
   componentDidMount () {
     changeBackground()
-
-    let currentPath = window.location.pathname
-    let lastPath = this.props.lastUri
-    if (lastPath && currentPath === '/' && lastPath !== currentPath) route(lastPath)
   }
 
   render () {
@@ -34,7 +30,7 @@ class App extends Component {
           <LocalGame path='/local/:player/:mode' {...this.props} />
           <HostGame path='/host' />
           <RemoteGame path='/remote' />
-          {/* <GameStats path='/stats' /> */}
+          <GameStats path='/stats' />
         </Router>
         <Footer />
       </div>

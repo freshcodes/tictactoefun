@@ -24,10 +24,10 @@ export default class Board extends Component {
     let text = this.textMap[cellState]
     let cssClass = this.props.win.indexOf(boardIndex) > -1 ? 'W' : ''
 
-    return(
+    return (
       <td data-index={boardIndex} data-state={cellState} class={cssClass}>
         <div>
-          <button type="button" label={label} onClick={this.click}>{text}</button>
+          <button type='button' label={label} onClick={this.click}>{text}</button>
         </div>
       </td>
     )
