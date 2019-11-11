@@ -109,14 +109,10 @@ button + button {
 	font-size: 80px;
 	line-height: 100%;
 	text-align: center;
+	appearance: none;
+	padding: 0;
+	margin: 0;
 }
-
-/* .board table td[data-state='1'] div::after { */
-/* 	content: 'X'; */
-/* } */
-/* .board table td[data-state='2'] div::after { */
-/* 	content: 'O'; */
-/* } */
 
 .board table td[class*='W'] div {
 	color: #fff;
