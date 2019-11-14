@@ -141,12 +141,6 @@ const Game = {
       return Game.stateFromAIFirstMove(state)
     } else {
       const states = Game.getSortedAINextStates(state)
-      // states.forEach((state) => {
-      //   console.log("-------")
-      //   console.log(this.stateBoardToString(state))
-      //   console.log(state)
-      //   console.log("-------")
-      // })
       return states[0]
     }
   },
@@ -181,32 +175,3 @@ ${Game.symbolForBoardSpot(state, 6)} | ${Game.symbolForBoardSpot(state, 7)} | ${
 }
 
 export default Game
-
-// let board = [
-//   Game.E, Game.E, Game.E,
-//   Game.E, Game.E, Game.E,
-//   Game.E, Game.E, Game.E
-// ]
-// let state = Game.generateState(board, Game.O)
-// // let board = [
-// //   Game.X, Game.E, Game.E,
-// //   Game.X, Game.O, Game.E,
-// //   Game.E, Game.E, Game.E
-// // ]
-// // let state = Game.generateState(board, Game.X)
-// // let board = [
-// //   Game.O, Game.X, Game.E,
-// //   Game.E, Game.X, Game.E,
-// //   Game.O, Game.E, Game.E
-// // ]
-// // let state = Game.generateState(board, Game.O)
-// while (!state.finished) {
-//   state = state.nextPlayer === Game.X ? Game.stateFromAIMoveHard(state) : Game.stateFromAIMoveHard(state)
-//   // state = state.nextPlayer === Game.X ? Game.stateFromAIMoveEasy(state) : Game.stateFromAIMoveHard(state)
-//   // state = state.nextPlayer === Game.X ? Game.stateFromAIMoveHard(state) : Game.stateFromAIMoveEasy(state)
-//   // console.log(state)
-//   console.log("============")
-//   console.log(Game.stateBoardToString(state))
-//   console.log(state.lastMoveBy, state.minimax)
-//   console.log("============")
-// }
