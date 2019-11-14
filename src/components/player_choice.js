@@ -9,9 +9,9 @@ class PlayerChoice extends Component {
   }
 
   render ({ lastPlayerChoice }) {
-    let options = Object.entries(playerNamesMap).map(([value, name]) => {
+    const options = Object.entries(playerNamesMap).map(([value, name]) => {
       value = parseInt(value, 10)
-      return (<option value={value} selected={lastPlayerChoice === value}>{name}</option>)
+      return (<option key={value} value={value} selected={lastPlayerChoice === value}>{name}</option>)
     })
 
     return (

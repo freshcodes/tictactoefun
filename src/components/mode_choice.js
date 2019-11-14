@@ -9,9 +9,9 @@ class ModeChoice extends Component {
   }
 
   render ({ lastModeChoice }) {
-    let options = Object.entries(modeNamesMap).map(([value, name]) => {
+    const options = Object.entries(modeNamesMap).map(([value, name]) => {
       value = parseInt(value, 10)
-      return (<option value={value} selected={lastModeChoice === value}>{name}</option>)
+      return (<option key={value} value={value} selected={lastModeChoice === value}>{name}</option>)
     })
 
     return (

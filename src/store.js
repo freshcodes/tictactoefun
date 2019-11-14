@@ -85,42 +85,42 @@ const actions = (store) => ({
   newGame (state, gameKey, player) {
     let gameState = ttt.generateState(ttt.generateEmptyBoard())
     if (player !== ttt.X) gameState = ttt.stateFromAIFirstMove(gameState)
-    let games = Object.assign({}, state.games)
+    const games = Object.assign({}, state.games)
     games[gameKey] = gameState
     return { games: games }
   },
 
   clearGameStateFromParams (state, player, mode) {
-    let gameKey = localGameKeyFromParams(player, mode)
+    const gameKey = localGameKeyFromParams(player, mode)
     this.clearGameState(gameKey)
   },
 
   clearGameState (state, gameKey) {
-    let games = Object.assign({}, state.games)
+    const games = Object.assign({}, state.games)
     games[gameKey] = ttt.generateState(ttt.generateEmptyBoard())
     return { games: games }
   },
 
   moveForPlayer (state, gameKey, boardIndex) {
-    let games = Object.assign({}, state.games)
+    const games = Object.assign({}, state.games)
     games[gameKey] = ttt.stateFromPlayerMove(games[gameKey], boardIndex)
     return { games: games }
   },
 
   moveForComputer (state, gameKey, mode) {
-    let games = Object.assign({}, state.games)
+    const games = Object.assign({}, state.games)
     games[gameKey] = ttt.stateFromAIMove(mode, games[gameKey])
     return { games: games }
   },
 
   localSaveStats (state, gameKey) {
-    let player = parseInt(gameKey.split('-')[1], 10)
-    let mode = parseInt(gameKey.split('-')[2], 10)
-    let game = state.games[gameKey]
+    const player = parseInt(gameKey.split('-')[1], 10)
+    const mode = parseInt(gameKey.split('-')[2], 10)
+    const game = state.games[gameKey]
 
-    let stats = Object.assign({}, state.stats)
-    let tie = game.draw
-    let win = player === ttt.X ? !!game.xWin : !!game.oWin
+    const stats = Object.assign({}, state.stats)
+    const tie = game.draw
+    const win = player === ttt.X ? !!game.xWin : !!game.oWin
 
     if (tie) {
       stats[mode][player].tie += 1

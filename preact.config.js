@@ -12,7 +12,7 @@ export default (config, env, helpers) => {
 
   // Going to mock Peer.js for SSR
   if (env.ssr) {
-    config.resolve.alias['peerjs'] = `${__dirname}/src/lib/peerjs-mock.js`
+    config.resolve.alias.peerjs = `${__dirname}/src/lib/peerjs-mock.js`
   }
 
   config.plugins.push(new CopyWebpackPlugin([{ context: `${__dirname}/src/assets`, from: 'robots.txt' }]))

@@ -24,7 +24,7 @@ export default class HostGame extends Component {
     this.controller.on('open', () => this.setState({ connectedToPeer: true }))
     this.controller.on('connected', () => this.setState({ connectedToPlayer: true }))
     this.controller.on('updatedGameState', (game) => {
-      let waiting = this.game.nextPlayer !== this.player
+      const waiting = this.game.nextPlayer !== this.player
       this.setState({
         waiting,
         win: game.winIndexes,
@@ -78,9 +78,9 @@ export default class HostGame extends Component {
   }
 
   renderWaitingForPlayer () {
-    let link = window.location.href.replace('/host', `/remote?${this.controller.peer.id}`)
+    const link = window.location.href.replace('/host', `/remote?${this.controller.peer.id}`)
     // TODO put link in input with auto select and copy to clip board feature
-    let connect = (<p>Copy and paste this link to a friend: <input type='text' value={link} readonly /></p>)
+    const connect = (<p>Copy and paste this link to a friend: <input type='text' value={link} readonly /></p>)
     return (
       <main>
         <p>Waiting for another player...</p>
@@ -105,7 +105,7 @@ export default class HostGame extends Component {
   }
 
   renderButtons () {
-    let restart = this.game.finished ? <button onclick={this.restart}>Restart</button> : ''
+    const restart = this.game.finished ? <button onclick={this.restart}>Restart</button> : ''
     return (
       <p>
         {restart}

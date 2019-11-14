@@ -6,7 +6,7 @@ const eventing = {
   },
 
   off (name, fn) {
-    let handlers = this._events && this._events[name]
+    const handlers = this._events && this._events[name]
     if (!handlers) return
     for (let i = 0; i < handlers.length; i++) {
       if (handlers[i] === fn) handlers.splice(i--, 1)

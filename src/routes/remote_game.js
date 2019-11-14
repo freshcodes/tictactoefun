@@ -31,7 +31,7 @@ export default class RemoteGame extends Component {
     })
     this.controller.on('connected', () => this.setState({ connectedToPlayer: true }))
     this.controller.on('updatedGameState', (game) => {
-      let waiting = this.game.nextPlayer !== this.player
+      const waiting = this.game.nextPlayer !== this.player
       this.setState({
         waiting,
         win: game.winIndexes,
@@ -108,7 +108,7 @@ export default class RemoteGame extends Component {
   }
 
   renderButtons () {
-    let restart = this.game.finished ? <button onclick={this.restart}>Restart</button> : ''
+    const restart = this.game.finished ? <button onclick={this.restart}>Restart</button> : ''
     return (
       <p>
         {restart}

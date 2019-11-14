@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "TicTacToe.Fun",
+  "description": "A Tic Tac Toe PWA you can play offline against the computer.",
   "version": "0.0.0",
   "license": "MIT",
   "author": "Fresh Codes <hello@fresh.codes> (https://fresh.codes/)",
@@ -44,7 +45,8 @@
       "react/no-unknown-property": 0,
       "react/no-did-update-set-state": 2,
       "react/react-in-jsx-scope": 2,
-      "react/prop-types": 0
+      "react/prop-types": 0,
+      "react/jsx-handler-names": 0
     }
   },
   "eslintIgnore": [
@@ -55,15 +57,15 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^6.0.1",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-config-standard-react": "^7.0.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^4.0.0",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-preact-pure": "^2.0.0",
+    "enzyme-adapter-preact-pure": "^2.2.0",
     "eslint-config-synacor": "^3.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
@@ -75,7 +77,7 @@
   "dependencies": {
     "geopattern": "^1.2.3",
     "peerjs": "^1.1.0",
-    "preact": "^10.0.1",
+    "preact": "^10.0.5",
     "preact-render-to-string": "^5.1.0",
     "preact-router": "^3.0.0",
     "unistore": "^3.5.0",

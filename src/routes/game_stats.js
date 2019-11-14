@@ -18,7 +18,7 @@ class GameStats extends Component {
   }
 
   render ({ stats }) {
-    let order = [
+    const order = [
       [ttt.EASY, ttt.X],
       [ttt.EASY, ttt.O],
       [ttt.INTERMEDIATE, ttt.X],
@@ -26,7 +26,7 @@ class GameStats extends Component {
       [ttt.HARD, ttt.X],
       [ttt.HARD, ttt.O]
     ]
-    let rows = order.map(([mode, player]) => this.renderRow(mode, player, stats[mode][player]))
+    const rows = order.map(([mode, player]) => this.renderRow(mode, player, stats[mode][player]))
     return (
       <main class='stats'>
         <table class='stats'>

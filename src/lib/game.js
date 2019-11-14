@@ -37,8 +37,8 @@ const Game = {
 
   getWinningCoordinates (positionCount) {
     for (let i = 0, l = Game.winningCounts.length; i < l; i++) {
-      let currentCount = Game.winningCounts[i]
-      let result = Game.winningCounts[i] & positionCount
+      const currentCount = Game.winningCounts[i]
+      const result = Game.winningCounts[i] & positionCount
       if (result === currentCount) return Game.winningCoordinates[result]
     }
     return null
@@ -99,7 +99,7 @@ const Game = {
     let value = 0
     const potentialStates = Game.getPotentialNextStates(state)
     potentialStates.forEach((potentialState) => {
-      let score = Game.minimax(potentialState)
+      const score = Game.minimax(potentialState)
       value += score
     })
     if (state.finished && !state.draw) {

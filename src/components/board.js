@@ -18,11 +18,11 @@ export default class Board extends Component {
   }
 
   renderCell (rowIndex, cellIndex) {
-    let boardIndex = cellIndex + (rowIndex * 3)
-    let cellState = this.props.board[boardIndex]
-    let label = `Cell ${cellIndex}, ${rowIndex}`
-    let text = this.textMap[cellState]
-    let cssClass = this.props.win.indexOf(boardIndex) > -1 ? 'W' : ''
+    const boardIndex = cellIndex + (rowIndex * 3)
+    const cellState = this.props.board[boardIndex]
+    const label = `Cell ${cellIndex}, ${rowIndex}`
+    const text = this.textMap[cellState]
+    const cssClass = this.props.win.indexOf(boardIndex) > -1 ? 'W' : ''
 
     return (
       <td data-index={boardIndex} data-state={cellState} class={cssClass}>
@@ -34,7 +34,7 @@ export default class Board extends Component {
   }
 
   renderRow (rowIndex) {
-    let cells = [0, 1, 2].map(cellIndex => this.renderCell(rowIndex, cellIndex))
+    const cells = [0, 1, 2].map(cellIndex => this.renderCell(rowIndex, cellIndex))
 
     return (
       <tr>
@@ -44,7 +44,7 @@ export default class Board extends Component {
   }
 
   render () {
-    let rows = [0, 1, 2].map(rowIndex => this.renderRow(rowIndex))
+    const rows = [0, 1, 2].map(rowIndex => this.renderRow(rowIndex))
 
     return (
       <div class='board'>
