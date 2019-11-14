@@ -1,5 +1,7 @@
 # TicTacToe.fun
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/freshcodes/tictactoefun.svg)](https://greenkeeper.io/)
+
 This is a [PWA](https://developer.mozilla.org/en-US/docs/Web/Apps/Progressive) where you can play tic tac toe against the computer offline. It will save state and stats in local storage.
 
 It also includes [Peer.js](https://peerjs.com/) to facilitate playing against a friend.
