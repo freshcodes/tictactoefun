@@ -41,11 +41,11 @@ export default class RemoteGame extends Component {
   }
 
   get player () {
-    return this.controller.player
+    return this.controller && this.controller.player
   }
 
   get game () {
-    return this.controller.game
+    return this.controller && this.controller.game
   }
 
   boardClick = (event) => {
@@ -108,7 +108,7 @@ export default class RemoteGame extends Component {
   }
 
   renderButtons () {
-    const restart = this.game.finished ? <button onclick={this.restart}>Restart</button> : ''
+    const restart = this.game && this.game.finished ? <button onclick={this.restart}>Restart</button> : ''
     return (
       <p>
         {restart}

@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import { Router } from 'preact-router'
+import { Router, route } from 'preact-router'
 import { connect } from 'unistore/preact'
 
 import { actions } from '../store'
@@ -19,6 +19,15 @@ import GameStats from '../routes/game_stats'
 class App extends Component {
   componentDidMount () {
     changeBackground()
+    this.routeToLastPath()
+  }
+
+  routeToLastPath () {
+    const currentPath = window.location.pathname
+    const lastPath = this.props.lastUri
+    if (lastPath && lastPath !== currentPath) {
+      route(lastPath)
+    }
   }
 
   render () {

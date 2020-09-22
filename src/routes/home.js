@@ -7,14 +7,6 @@ import PlayerChoice from '../components/player_choice'
 import ModeChoice from '../components/mode_choice'
 
 export default class Home extends Component {
-  componentDidMount () {
-    const currentPath = window.location.pathname
-    const lastPath = this.props.lastUri
-    if (lastPath && lastPath !== currentPath) {
-      route(lastPath)
-    }
-  }
-
   startLocalGame = (event) => {
     const player = this.props.lastPlayerChoice
     const mode = this.props.lastModeChoice
