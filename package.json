@@ -86,7 +86,7 @@
     "preact-cli": "^3.0.2",
     "preact-render-spy": "^1.2.1",
     "serve": "^11.3.2",
-    "stylelint": "^13.7.1",
+    "stylelint": "^13.7.2",
     "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
