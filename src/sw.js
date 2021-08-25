@@ -5,7 +5,7 @@ import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { ExpirationPlugin } from 'workbox-expiration'
 
 registerRoute(
-  new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
+  /https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/,
   new CacheFirst({
     cacheName: 'google-fonts',
     plugins: [

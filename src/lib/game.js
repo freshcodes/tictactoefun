@@ -54,9 +54,11 @@ const Game = {
     let xCount = 0
     let oCount = 0
     let emptyCount = 0
-    for (var i = 0; i < 9; i++) {
-      board[i] === Game.X ? xCount += Game.boardValues[i]
-        : board[i] === Game.O ? oCount += Game.boardValues[i]
+    for (let i = 0; i < 9; i++) {
+      board[i] === Game.X
+        ? xCount += Game.boardValues[i]
+        : board[i] === Game.O
+          ? oCount += Game.boardValues[i]
           : emptyCount += 1
     }
     return [emptyCount, xCount, oCount]
