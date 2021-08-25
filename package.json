@@ -87,7 +87,7 @@
     "preact-render-spy": "^1.2.1",
     "serve": "^11.3.2",
     "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^20.0.0"
+    "stylelint-config-standard": "^22.0.0"
   },
   "dependencies": {
     "geopattern": "^1.2.3",
