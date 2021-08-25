@@ -7,10 +7,13 @@ export default (config, env, helpers) => {
     config.resolve.alias.peerjs = path.resolve(__dirname, 'src', 'lib', 'peerjs-mock.js')
   }
 
-  const context = path.resolve(__dirname, 'src', 'assets')
-  config.plugins.push(new CopyWebpackPlugin([{ context, from: 'robots.txt' }]))
-  config.plugins.push(new CopyWebpackPlugin([{ context, from: 'browserconfig.xml' }]))
-  config.plugins.push(new CopyWebpackPlugin([{ context, from: 'CNAME' }]))
+  config.plugins.push(new CopyWebpackPlugin({
+    patterns: [
+      { from: 'assets/robots.txt' },
+      { from: 'assets/browserconfig.xml' },
+      { from: 'assets/CNAME' }
+    ]
+  }))
 
   return config
 }
