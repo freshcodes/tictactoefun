@@ -80,7 +80,7 @@
     "enzyme-adapter-preact-pure": "^3.1.0",
     "husky": "^4.3.6",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.2.3",
+    "jest": "^27.2.4",
     "jest-preset-preact": "^4.0.5",
     "lint-staged": "^10.3.0",
     "preact-cli": "^3.2.2",
