@@ -77,7 +77,7 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.26.0",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-preact-pure": "^3.1.0",
+    "enzyme-adapter-preact-pure": "^3.3.0",
     "husky": "^4.3.6",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.2.3",
