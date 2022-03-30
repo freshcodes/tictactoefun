@@ -95,7 +95,7 @@
     "preact-render-to-string": "^5.1.19",
     "preact-router": "^3.2.1",
     "unistore": "^3.5.2",
-    "workbox-webpack-plugin": "^6.2.4"
+    "workbox-webpack-plugin": "^6.5.2"
   },
   "browserslist": [
     "> 5%",
